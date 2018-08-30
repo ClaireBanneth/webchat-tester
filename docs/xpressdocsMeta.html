@@ -25,10 +25,6 @@
                     <td><input type="text" id="email" value="" /></td>
                 </tr>
 				<tr>
-                    <th>Store Name:</th>
-                    <td><input type="text" id="store-name" value="" /></td>
-                </tr>
-				<tr>
                     <th>Company:</th>
                     <td><input type="text" id="company" value="" /></td>
                 </tr>
@@ -105,7 +101,6 @@
                             var firstName = document.getElementById('first-name').value;
                             var lastName = document.getElementById('last-name').value;
                             var emailAddress = document.getElementById('email').value;
-							var storeName = document.getElementById('store-name').value;
 							var company = document.getElementById('company').value;
 							var telephoneNumber = document.getElementById('number').value;
 							var orderid = document.getElementById('order-id').value;
@@ -114,11 +109,17 @@
                                 firstName: firstName,
                                 lastName: lastName,
                                 emailAddress: emailAddress,
-                                storeName: storeName,
                                 company: company,
                                 phoneNumber: telephoneNumber,
                                 orderId: orderid,
-                                customerId: 59606
+								
+								customField1Label: 'Email Address',
+								customField1: emailAddress,
+								customField2Label: 'Company',
+								customField2: company,
+								customField3Label: 'Order',
+								customField3: orderid
+                   
                             });
                             
                             // Alternatively, call webchat.renderPopup here. Note that reconnects do not apply to popup chat.
