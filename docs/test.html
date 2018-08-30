@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PureCloud Webchat Demo</title>
+</head><body>
+    <form id="chatForm">
+        <h3>Participant Information- local</h3>
+
+        <table class="webchat-config">
+            <tbody>
+                <tr>
+                    <th>First Name:</th>
+                    <td><input type="text" id="first-name" value=""></td>
+                </tr>
+                <tr>
+                    <th>Last Name:</th>
+                    <td><input type="text" id="last-name" value="" /></td>
+                </tr>
+                <tr>
+                    <th>Agent Email:</th>
+                    <td><input type="text" id="agent-email" value="" /></td>
+                </tr>
+                <tr>
+                    <th>Store Name:</th>
+                    <td><input type="text" id="store-name" value="" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" id="chat-button">Start Chat</button>
+    </form>
+    <div id="chat-container" style="height:600px; display:none;"></div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <script id="purecloud-webchat-js"
+            type="text/javascript"
+            src="https://apps.mypurecloud.com/webchat/jsapi-v1.js"
+            region="us-east-1"
+            org-guid="fd567749-88c3-492f-9a49-5d951e7d698d"
+            deployment-key="76211205-16cc-4ebe-be66-e1873388d964"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function initializeChat() {
+            var chatConfig = {                
+                "webchatAppUrl": "https://apps.mypurecloud.com/webchat",
+                "webchatServiceUrl": "https://realtime.mypurecloud.com:443",
+                "orgId": "17328",
+                "orgName": "xpressdocs",              
+                "priority": "0",
+                "queueName": "Web Chat",
+                "showSubmitButton": "true",
+                "locale": "en",
+                "logLevel": "DEBUG",                
+                "companyLogo": {
+                    "width": 300,
+                    "height": 64,
+                    "url": "https://www.xdplatform.com/wp-content/uploads/2015/09/xpressdocs_logo_blk_sticky.png"
+                },
+                "companyLogoSmall": {
+                    "width": 150,
+                    "height": 32,
+                    "url": "https://www.xdplatform.com/wp-content/uploads/2015/09/xpressdocs_logo_blk_sticky.png"
+                },
+                "agentAvatar": {
+                    "width": 462,
+                    "height": 462,
+                    "url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/917/assets/images/agent.jpg"
+                },
+
+                "welcomeMessage": "Thank you for chatting with us!",
+                "cssClass": "webchat-frame",
+                "css": {
+                    "width": "100%",
+                    "height": "100%"
+                }
+            };
+            var chatButton = document.getElementById('chat-button');
+            var chatcontainer = document.getElementById('chat-container');
+
+            window.PURECLOUD_WEBCHAT_FRAME_CONFIG = {
+                containerEl: 'chat-container'
+            };
+
+            ININ.webchat.create(chatConfig)
+            .then(function (webchat) {
+
+                if (webchat.isAutoJoined()) {
+                    // Do something to disable chat button
+                } else {
+                    chatButton.onclick = function () {
+                        chatcontainer.style.display = "block";
+
+                        var firstName = document.getElementById('first-name').value;
+                        var lastName = document.getElementById('last-name').value;
+                        var agentEmail = document.getElementById('agent-email').value;
+                        var storename = document.getElementById('store-name').value;
+
+                        if (firstName.length == 0 || firstName == "") {
+                            alert('please enter first name');
+                        }
+                        else if (lastName.length == 0 || lastName == "") {
+                            alert('please enter last name');
+                        }
+                        else if (agentEmail.length == 0 || agentEmail == "") {
+                            alert('please enter email');
+                        }
+                        else if (storename.length == 0 || storename == "") {
+                            alert('please enter store name');
+                        }
+                        else {
+                            // Use getConfig.setConfigProperty() for any web chat configuration property to dynamically set config values.
+                            webchat.getConfig().setData({
+                                "firstName": firstName,
+                                "lastName": lastName,
+                                "agentEmail": agentEmail,
+                                "storename": storename
+                            });
+
+                            // Alternatively, call webchat.renderPopup here. Note that reconnects do not apply to popup chat.
+                            webchat.renderFrame({
+                                containerEl: 'chat-container'
+                            });
+                        }
+                    };
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+        });
+    </script>
+</body>
+</html>
