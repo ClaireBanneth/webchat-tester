@@ -39,7 +39,7 @@
   src="https://apps.mypurecloud.com/webchat/jsapi-v1.js"
   region="us-east-1"
   org-guid="ee84d286-aa0f-4426-b0a2-0bfef5b4cbe1"
-  deployment-key="d9dc0ffb-6199-4efd-90f8-db85905f20e0"
+  deployment-key="9b165899-e1bb-4976-8478-5c61db6e19b7"
 ></script>
 
     <script type="text/javascript">
@@ -96,7 +96,17 @@
                             webchat.getConfig().setData({
                                 firstName: firstName,
                                 lastName: lastName,
-                                emailAddress: emailAddress
+                                emailAddress: emailAddress,
+                                company: company,
+                                phoneNumber: telephoneNumber,
+                                orderId: orderid,
+								
+								customField1Label: 'Email Address',
+								customField1: emailAddress,
+								customField2Label: 'Company',
+								customField2: company,
+								customField3Label: 'Order',
+								customField3: orderid
                    
                             });
                             
