@@ -24,7 +24,7 @@
                     <th>Email Address:</th>
                     <td><input type="text" id="email" value="" /></td>
                 </tr>
-				<tr>
+		<tr>
                     <th>Telephone Number:</th>
                     <td><input type="text" id="number" value="" /></td>
                 </tr>
@@ -90,7 +90,7 @@
                             var firstName = document.getElementById('first-name').value;
                             var lastName = document.getElementById('last-name').value;
                             var emailAddress = document.getElementById('email').value;
-							var telephoneNumber = document.getElementById('number').value;
+			    var telephoneNumber = document.getElementById('number').value;
                             
                             webchat.getConfig().setData({
                                 firstName: firstName,
@@ -101,11 +101,11 @@
                             });
                             
                             // Alternatively, call webchat.renderPopup here. Note that reconnects do not apply to popup chat.
-			    webchat.renderPopup({
-				width: 400,
-				height: 400,
-				title: 'Chat'
-			    });
+			    //webchat.renderPopup({
+				//width: 400,
+				//height: 400,
+				//title: 'Chat'
+			   // });
                             webchat.renderFrame({
                                 containerEl: 'chat-container'
                             });
