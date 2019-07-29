@@ -22,7 +22,7 @@
                 </tr>
                  <tr>
                     <th>Email Address:</th>
-                    <td><input type="text" id="email" value="" /></td>
+                    <td><input type="text" id="emailadd" value="" /></td>
                 </tr>
 		<tr>
                     <th>Telephone Number:</th>
@@ -60,11 +60,16 @@
                 locale: 'en',
                 reconnectEnabled: true,
                 reconnectOrigins: ['https://example.com', 'https://help.example.com', 'https://shop.example.com'],
-				companyLogoSmall: {
-                    width: 150,
-                    height: 32,
-                    url: 'https://www.xdplatform.com/wp-content/uploads/2015/09/xpressdocs_logo_blk_sticky.png'
-                },
+		companyLogo: {
+		    "width": 600,
+		    "height": 149,
+		    "url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1305/assets/images/PC-blue-nomark.png"
+		  },
+		 companyLogoSmall: {
+		    "width": 25,
+		    "height": 25,
+		    "url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1305/assets/images/companylogo.png"
+		  },
                 agentAvatar: {
                     width: 462,
                     height: 462,
@@ -89,13 +94,13 @@
                         chatButton.onclick = function () {
                             var firstName = document.getElementById('first-name').value;
                             var lastName = document.getElementById('last-name').value;
-                            var emailAddress = document.getElementById('email').value;
+                            var email = document.getElementById('emailadd').value;
 			    var telephoneNumber = document.getElementById('number').value;
                             
                             webchat.getConfig().setData({
                                 firstName: firstName,
                                 lastName: lastName,
-                                email: emailAddress,
+                                email: email,
                                 phoneNumber: telephoneNumber
                    
                             });
